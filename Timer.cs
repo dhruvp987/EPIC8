@@ -12,9 +12,9 @@ using System.Timers;
 public class Timer {
     // 1/60 seconds converted to miliseconds (what the System timer uses)
     // is about 17
-    public static int DEFAULT_TIMRINTRVL = 17;
-    public static int DEFAULT_MXRGVL = 255;
-    public static int DEFAULT_DCRAMT = 1;
+    public const int DEFAULT_TIMRINTRVL = 17;
+    public const int DEFAULT_MXRGVL = 255;
+    public const int DEFAULT_DCRAMT = 1;
 
     int register;
     int maxRegVal;
@@ -26,12 +26,14 @@ public class Timer {
      * Create the CHIP-8 timer register.
      *
      * Parameters:
-     *   timerInterval: The time the timer waits before elapsing
-     *   maxRegVal: The max value the register can store
-     *   decrAmt: The amount to decrement the register everytime
-     *            the timer elapses
+     *   timerInterval (optional): The time the timer waits before elapsing
+     *   maxRegVal (optional): The max value the register can store
+     *   decrAmt (optional): The amount to decrement the register everytime
+     *                       the timer elapses
      */
-    public Timer(int timerInterval, int maxRegVal, int decrAmt) {
+    public Timer(int timerInterval = DEFAULT_TIMRINTRVL,
+		 int maxRegVal = DEFAULT_MXRGVL,
+		 int decrAmt = DEFAULT_DCRAMT) {
 	// Prepare the register
 	this.maxRegVal = maxRegVal;
         register = maxRegVal;
