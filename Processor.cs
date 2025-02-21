@@ -8,6 +8,9 @@ public class Processor {
 
     Registers regs;
 
+    Timer delayTimer;
+    Timer soundTimer;
+
     /*
      * Create a new processor.
      */
@@ -15,5 +18,8 @@ public class Processor {
 	// Create the general registers plus the program counter
 	// and index register.
         regs = new Registers(NUM_GEN_REGS + 2);
+
+	delayTimer = new Timer();
+	soundTimer = new Timer();
     }
 }
