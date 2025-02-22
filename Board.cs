@@ -26,5 +26,9 @@ public class Board {
 	this.dis = dis;
 	this.stack = stack;
 	this.psr = psr;
+
+	// Attach the processor to the board so it can access
+	// the rest of the components.
+	psr.Attach(this);
     }
 }

@@ -11,6 +11,8 @@ public class Processor {
     Timer delayTimer;
     Timer soundTimer;
 
+    Board? board;
+
     /*
      * Create a new processor.
      */
@@ -21,5 +23,19 @@ public class Processor {
 
 	delayTimer = new Timer();
 	soundTimer = new Timer();
+    }
+
+    /*
+     * Attach the processor to a board if it isn't already attached.
+     * The processor will then be able to access the components on
+     * that board.
+     *
+     * Parameter:
+     *   board: The board to attach to
+     */
+    public void Attach(Board board) {
+        if (this.board == null) {
+            this.board = board;
+	}
     }
 }
