@@ -2,6 +2,8 @@
  * The emulator's volatile memory representing the CHIP-8's RAM.
  */
 public class Memory {
+    public const uint MEM_DEFAULT_SIZE = 4000;
+
     uint numBytes;
     byte[] mem;
 
@@ -16,7 +18,7 @@ public class Memory {
      * Parameter:
      *   size: The number of bytes that the memory can store.
      */
-    public Memory(uint size) {
+    public Memory(uint size = MEM_DEFAULT_SIZE) {
 	numBytes = size;
         mem = new byte[size];
     }
