@@ -39,6 +39,8 @@ public class Memory {
      *
      * Parameter:
      *   addr: The memory address to get from.
+     *
+     * Returns: The byte at the memory address.
      */
     public byte Get(uint addr) {
         return mem[addr];
