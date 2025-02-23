@@ -54,4 +54,14 @@ public class Board {
     public byte GetMem(uint addr) {
         return mem.Get(addr);
     }
+
+    /*
+     * Display a frame on the display component.
+     *
+     * Parameter:
+     *   fbuf: The frame buffer to display.
+     */
+    public void Display(FrameBuffer fbuf) {
+        dis.Display(fbuf);
+    }
 }
