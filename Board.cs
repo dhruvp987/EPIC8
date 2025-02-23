@@ -31,4 +31,27 @@ public class Board {
 	// the rest of the components.
 	psr.Attach(this);
     }
+
+    /*
+     * Set a memory address to a given byte in the memory component.
+     *
+     * Parameters:
+     *   addr: The memory address to set to
+     *   data: The byte to set
+     */
+    public void SetMem(uint addr, byte data) {
+        mem.Set(addr, data);
+    }
+
+    /*
+     * Get the byte at a memory address in the memory component.
+     *
+     * Parameter:
+     *   addr: The memory address to get from
+     *
+     * Returns: The byte at the memory address.
+     */
+    public byte GetMem(uint addr) {
+        return mem.Get(addr);
+    }
 }
