@@ -7,6 +7,7 @@ public class Board {
     Memory mem;
     IDisplay dis;
     EStack stack;
+    GPU gpu;
     Processor psr;
 
     /*
@@ -16,19 +17,21 @@ public class Board {
      *   mem: The object to store RAM data
      *   dis: The object to use for display output
      *   stack: The stack to use for CHIP-8's subroutine calls
+     *   gpu: The GPU to provide graphical capabilites
      *   psr: The processor to execute CHIP-8 instructions
      */
     public Board(Memory mem,
 		 IDisplay dis,
 		 EStack stack,
+		 GPU gpu,
 		 Processor psr) {
 	this.mem = mem;
 	this.dis = dis;
 	this.stack = stack;
+	this.gpu = gpu;
 	this.psr = psr;
 
-	// Attach the processor to the board so it can access
-	// the rest of the components.
+	gpu.Attach(this);
 	psr.Attach(this);
     }
 
