@@ -44,6 +44,22 @@ public class GPU {
     }
 
     /*
+     * Run a kernel on the GPU's frame buffer.
+     *
+     * Parameter:
+     *   fun: The kernel to run on the frame buffer. It takes
+     *        three args: x-cor, y-cor, and the on/off state of that
+     *        pixel. It returns the new on/off state of the pixel
+     */
+    public void RunKernel(Func<int, int, bool, bool> fun) {
+        for (int y = 0; y < buf.Height; y++) {
+            for (int x = 0; x < buf.Width; x++) {
+                buf.Set(x, y, fun(x, y, buf.Get(x, y)));
+	    }
+	}
+    }
+
+    /*
      * Display the current framebuffer to the board's display
      * component.
      */

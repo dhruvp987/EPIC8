@@ -58,6 +58,10 @@ public class Board {
         return mem.Get(addr);
     }
 
+    public void RunKernelOnGPU(Func<int, int, bool, bool> fun) {
+        gpu.RunKernel(fun);
+    }
+
     /*
      * Display a frame on the display component.
      *

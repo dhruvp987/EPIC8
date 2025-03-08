@@ -38,4 +38,13 @@ public class Processor {
             this.board = board;
 	}
     }
+
+    /*
+     * The operation to clear the screen's contents.
+     */
+    void OpClearScreen() {
+	if (board != null) {
+            board.RunKernelOnGPU((x, y, isOn) => false);
+        }
+    }
 }
