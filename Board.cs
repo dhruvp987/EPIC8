@@ -58,6 +58,14 @@ public class Board {
         return mem.Get(addr);
     }
 
+    /*
+     * Send a kernel to the GPU for it to run.
+     *
+     * Parameter:
+     *   fun: The kernel to run on the frame buffer. It takes
+     *        three args: x-cor, y-cor, and the on/off state of that
+     *        pixel. It returns the new on/off state of the pixel
+     */
     public void RunKernelOnGPU(Func<int, int, bool, bool> fun) {
         gpu.RunKernel(fun);
     }
