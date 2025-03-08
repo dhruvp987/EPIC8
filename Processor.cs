@@ -44,7 +44,8 @@ public class Processor {
      */
     void OpClearScreen() {
 	if (board != null) {
-            board.RunKernelOnGPU((x, y, isOn) => false);
+            board.Gpu.RunKernel((x, y, isOn) => false);
+	    board.Gpu.Display();
         }
     }
 }

@@ -65,7 +65,7 @@ public class GPU {
      */
     public void Display() {
         if (this.board != null) {
-            board.Display(buf);
+            board.Disp.Display(buf);
 	}
     }
 }
