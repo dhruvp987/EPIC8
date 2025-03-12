@@ -30,7 +30,6 @@ public class Board {
 	this.gpu = gpu;
 	this.psr = psr;
 
-	gpu.Attach(this);
 	psr.Attach(this);
     }
 

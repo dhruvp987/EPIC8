@@ -4,8 +4,6 @@
 public class GPU {
     FrameBuffer buf;
 
-    Board? board;
-
     /*
      * Create a new GPU.
      *
@@ -15,20 +13,6 @@ public class GPU {
      */
     public GPU(int resWidth, int resHeight) {
         buf = new FrameBuffer(resWidth, resHeight);
-    }
-
-    /*
-     * Attach the GPU to the board if it isn't already attached.
-     * The GPU will then be able to access the components on
-     * that board.
-     *
-     * Parameter:
-     *   board: The board to attach to
-     */
-    public void Attach(Board board) {
-        if (this.board == null) {
-            this.board = board;
-	}
     }
 
     /*
@@ -62,10 +46,11 @@ public class GPU {
     /*
      * Display the current framebuffer to the board's display
      * component.
+     *
+     * Parameter:
+     *   disp: The display to update
      */
-    public void Display() {
-        if (this.board != null) {
-            board.Disp.Display(buf);
-	}
+    public void Display(IDisplay disp) {
+        disp.Display(buf);
     }
 }
