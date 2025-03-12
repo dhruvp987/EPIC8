@@ -25,9 +25,23 @@ public class Processor {
 
     /*
      * The operation to clear the screen's contents.
+     *
+     * Parameters:
+     *   gpu: The GPU whose framebuffer to display
+     *   disp: The display to update with the new framebuffer
      */
     void OpClearScreen(GPU gpu, IDisplay disp) {
         gpu.RunKernel((x, y, isOn) => false);
 	gpu.Display(disp);
+    }
+
+    /*
+     * The operation to set the program counter to a given memory address.
+     *
+     * Parameter:
+     *   addr: The address to set the program counter to
+     */
+    void OpJump(int addr) {
+        regs[PC_INDEX] = addr;
     }
 }
