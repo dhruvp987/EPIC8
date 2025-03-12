@@ -55,4 +55,15 @@ public class Processor {
     void OpSet(int regIndex, int val) {
         regs[regIndex] = val;
     }
+
+    /*
+     * The operation to add a value to a register's current value.
+     *
+     * Parameters:
+     *   regIndex: The register to add to
+     *   val: The value to add
+     */
+    void OpAdd(int regIndex, int val) {
+        regs[regIndex] += val;
+    }
 }
