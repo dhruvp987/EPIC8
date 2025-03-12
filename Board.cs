@@ -29,8 +29,6 @@ public class Board {
 	this.stack = stack;
 	this.gpu = gpu;
 	this.psr = psr;
-
-	psr.Attach(this);
     }
 
     // The board's memory component.

@@ -11,8 +11,6 @@ public class Processor {
     Timer delayTimer;
     Timer soundTimer;
 
-    Board? board;
-
     /*
      * Create a new processor.
      */
@@ -26,26 +24,10 @@ public class Processor {
     }
 
     /*
-     * Attach the processor to a board if it isn't already attached.
-     * The processor will then be able to access the components on
-     * that board.
-     *
-     * Parameter:
-     *   board: The board to attach to
-     */
-    public void Attach(Board board) {
-        if (this.board == null) {
-            this.board = board;
-	}
-    }
-
-    /*
      * The operation to clear the screen's contents.
      */
-    void OpClearScreen() {
-	if (board != null) {
-            board.Gpu.RunKernel((x, y, isOn) => false);
-	    board.Gpu.Display(board.Disp);
-        }
+    void OpClearScreen(GPU gpu, IDisplay disp) {
+        gpu.RunKernel((x, y, isOn) => false);
+	gpu.Display(disp);
     }
 }
