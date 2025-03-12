@@ -66,4 +66,14 @@ public class Processor {
     void OpAdd(int regIndex, int val) {
         regs[regIndex] += val;
     }
+
+    /*
+     * The operation to set the index register to a given value.
+     *
+     * Parameter:
+     *   val: The value to set in the index register
+     */
+    void OpSetIndex(int val) {
+        regs[I_REG_INDEX] = val;
+    }
 }
