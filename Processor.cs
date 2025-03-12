@@ -44,4 +44,15 @@ public class Processor {
     void OpJump(int addr) {
         regs[PC_INDEX] = addr;
     }
+
+    /*
+     * The operation to set a register to a given value.
+     *
+     * Parameters:
+     *   regIndex: The register to set
+     *   val: The value to set in the register
+     */
+    void OpSet(int regIndex, int val) {
+        regs[regIndex] = val;
+    }
 }
