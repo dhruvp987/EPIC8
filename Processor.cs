@@ -6,7 +6,7 @@ public class Processor {
     const int PC_INDEX = NUM_GEN_REGS;
     const int I_REG_INDEX = PC_INDEX + 1;
 
-    Registers regs;
+    int[] regs;
 
     Timer delayTimer;
     Timer soundTimer;
@@ -17,7 +17,7 @@ public class Processor {
     public Processor() {
 	// Create the general registers plus the program counter
 	// and index register.
-        regs = new Registers(NUM_GEN_REGS + 2);
+        regs = new int[NUM_GEN_REGS + 2];
 
 	delayTimer = new Timer();
 	soundTimer = new Timer();
