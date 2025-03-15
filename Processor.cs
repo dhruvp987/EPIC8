@@ -31,7 +31,7 @@ public class Processor {
      *   gpu: The GPU whose framebuffer to display
      *   disp: The display to update with the new framebuffer
      */
-    void OpClearScreen(GPU gpu, IDisplay disp) {
+    public void OpClearScreen(GPU gpu, IDisplay disp) {
         gpu.RunKernel((x, y, isOn) => false);
 	gpu.Display(disp);
     }
@@ -42,7 +42,7 @@ public class Processor {
      * Parameter:
      *   addr: The address to set the program counter to
      */
-    void OpJump(short addr) {
+    public void OpJump(short addr) {
         regs[PC_INDEX] = addr;
     }
 
@@ -53,7 +53,7 @@ public class Processor {
      *   regIndex: The register to set
      *   val: The value to set in the register
      */
-    void OpSet(int regIndex, byte val) {
+    public void OpSet(int regIndex, byte val) {
         regs[regIndex] = val;
     }
 
@@ -64,7 +64,7 @@ public class Processor {
      *   regIndex: The register to add to
      *   val: The value to add
      */
-    void OpAdd(int regIndex, byte val) {
+    public void OpAdd(int regIndex, byte val) {
         regs[regIndex] += val;
     }
 
@@ -74,7 +74,7 @@ public class Processor {
      * Parameter:
      *   val: The value to set in the index register
      */
-    void OpSetIndex(short val) {
+    public void OpSetIndex(short val) {
         regs[I_REG_INDEX] = val;
     }
 
@@ -90,7 +90,7 @@ public class Processor {
      *   gpu: The gpu whose frame buffer will be updated
      *   disp: The display to draw to
      */
-    void OpDisplay(int xReg, int yReg, int spriteHeight, Memory mem, GPU gpu, IDisplay disp) {
+    public void OpDisplay(int xReg, int yReg, int spriteHeight, Memory mem, GPU gpu, IDisplay disp) {
 	var spriteAddr = regs[I_REG_INDEX];
 
 	var frameWidth = gpu.FrameBufWidth;
