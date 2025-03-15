@@ -9,9 +9,10 @@ public class Executor {
      *
      * Parameters:
      *   progReader: The program to read and execute
-     *   board: The components to execute the program with
+     *   psr: The processor to use to execute instructions
+     *   phl: The peripherals the processor will use
      */
-    public static void Execute(BinaryReader progReader, Board board) {
+    public static void Execute(BinaryReader progReader, Processor psr, Peripherals phl) {
 
     }
 
