@@ -1,5 +1,5 @@
 /*
- * The component that a processor uses to execute instructions.
+ * A collection of components that a processor uses to operate the emulator.
  */
 public class Peripherals {
     Memory mem;
