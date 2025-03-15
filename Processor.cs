@@ -42,7 +42,7 @@ public class Processor {
      * Parameter:
      *   addr: The address to set the program counter to
      */
-    void OpJump(int addr) {
+    void OpJump(short addr) {
         regs[PC_INDEX] = addr;
     }
 
@@ -53,7 +53,7 @@ public class Processor {
      *   regIndex: The register to set
      *   val: The value to set in the register
      */
-    void OpSet(int regIndex, int val) {
+    void OpSet(int regIndex, byte val) {
         regs[regIndex] = val;
     }
 
@@ -64,7 +64,7 @@ public class Processor {
      *   regIndex: The register to add to
      *   val: The value to add
      */
-    void OpAdd(int regIndex, int val) {
+    void OpAdd(int regIndex, byte val) {
         regs[regIndex] += val;
     }
 
@@ -74,7 +74,7 @@ public class Processor {
      * Parameter:
      *   val: The value to set in the index register
      */
-    void OpSetIndex(int val) {
+    void OpSetIndex(short val) {
         regs[I_REG_INDEX] = val;
     }
 
