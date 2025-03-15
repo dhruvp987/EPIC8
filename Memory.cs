@@ -2,15 +2,15 @@
  * The emulator's volatile memory representing the CHIP-8's RAM.
  */
 public class Memory {
-    public const uint MEM_DEFAULT_SIZE = 4000;
+    public const int MEM_DEFAULT_SIZE = 4000;
 
-    uint numBytes;
+    int numBytes;
     byte[] mem;
 
     /*
      * The size of the memory, in bytes.
      */
-    public uint Size { get => numBytes; }
+    public int Size { get => numBytes; }
 
     /*
      * Constructs the memory object.
@@ -18,7 +18,7 @@ public class Memory {
      * Parameter:
      *   size: The number of bytes that the memory can store.
      */
-    public Memory(uint size = MEM_DEFAULT_SIZE) {
+    public Memory(int size = MEM_DEFAULT_SIZE) {
 	numBytes = size;
         mem = new byte[size];
     }
@@ -30,7 +30,7 @@ public class Memory {
      *   addr: The memory address to set to.
      *   data: The byte to set.
      */
-    public void Set(uint addr, byte data) {
+    public void Set(int addr, byte data) {
         mem[addr] = data;
     }
 
@@ -42,7 +42,7 @@ public class Memory {
      *
      * Returns: The byte at the memory address.
      */
-    public byte Get(uint addr) {
+    public byte Get(int addr) {
         return mem[addr];
     }
 }

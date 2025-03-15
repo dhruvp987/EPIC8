@@ -4,6 +4,9 @@
 public class GPU {
     FrameBuffer buf;
 
+    public int FrameBufWidth  { get => buf.Width;  }
+    public int FrameBufHeight { get => buf.Height; }
+
     /*
      * Create a new GPU.
      *
