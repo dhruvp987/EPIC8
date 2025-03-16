@@ -10,7 +10,7 @@ public class ConsoleDisplay : IDisplay {
      */
     public void Display(FrameBuffer fbuf) {
         fbuf.Traverse((x, y, isOn) => {
-            if (isOn == 1) Console.Write('#');
+            if (isOn == 1) Console.Write('◼');
 	    else Console.Write(' ');
 	    if (x == fbuf.Width - 1) Console.WriteLine();
 	});
