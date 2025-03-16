@@ -25,6 +25,81 @@ public class Processor {
     }
 
     /*
+     * Run the processor execution loop.
+     *
+     * Parameter:
+     *   phl: The peripherals used when executing instructions
+     */
+    public void Run(Peripherals phl) {
+	while (true) {
+            var instFirstByte = phl.Mem.Get(regs[PC_INDEX]);
+	    var instSecByte = phl.Mem.Get(regs[PC_INDEX] + 1);
+	    // Merge the 2 bytes into one 16-bit instruction.
+	    var inst = (0x0000 | (int) instFirstByte << 8) | instSecByte;
+
+	    regs[PC_INDEX] += 2;
+
+	    // Set to false if the instruction doesn't get matched in
+	    // a switch statement.
+            var executed = true;
+	    
+	    switch (inst) {
+                case 0x00E0:
+		    OpClearScreen(phl.Gpu, phl.Disp);
+		    break;
+
+		default:
+		    executed = false;
+		    break;
+	    }
+	    if (executed) {
+                continue;
+	    }
+
+	    var instFirstNibbles = SplitIntoNibbles(instFirstByte);
+	    var instSecNibbles = SplitIntoNibbles(instSecByte);
+
+	    // May be needed by some instructions to store a memory address,
+	    // so it is declared here for clarity.
+            short addr = 0;
+
+            switch (instFirstNibbles[0]) {
+                case 0x1:
+		    addr = (short) ((0x000 | (short) instFirstNibbles[1] << 8) | instSecByte);
+		    OpJump(addr);
+		    break;
+
+		case 0x6:
+		    OpSet(instFirstNibbles[1], instSecByte);
+		    break;
+
+		case 0x7:
+		    OpAdd(instFirstNibbles[1], instSecByte);
+		    break;
+
+		case 0xA:
+		    addr = (short) ((0x000 | (short) instFirstNibbles[1] << 8) | instSecByte);
+		    OpSetIndex(addr);
+		    break;
+
+		case 0xD:
+		    OpDisplay(
+		        instFirstNibbles[1],
+			instSecNibbles[0],
+			instSecNibbles[1],
+			phl.Mem,
+			phl.Gpu,
+			phl.Disp);
+		    break;
+
+		default:
+		    executed = false;
+		    break;
+	    }
+	}
+    }
+
+    /*
      * The operation to clear the screen's contents.
      *
      * Parameters:
@@ -122,5 +197,12 @@ public class Processor {
 	}
 
 	gpu.Display(disp);
+    }
+
+    byte[] SplitIntoNibbles(byte b) {
+        var nibbles = new byte[2];
+        nibbles[0] = (byte) (b >> 4);
+	nibbles[1] = (byte) ((b << 4) >> 4);
+        return nibbles;
     }
 }
