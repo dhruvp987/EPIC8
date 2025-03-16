@@ -24,7 +24,8 @@ public class GPU {
      * Parameters:
      *   x: The pixel's x index
      *   y: The pixel's y index
-     *   isOn: Whether the pixel is on (1) or off (0)
+     *   fun: A function that takes the current on/off (1/0) state
+     *        of the specified pixel and returns its new state
      */
     public void Set(int x, int y, Func<int, int> fun) {
         buf.Set(x, y, fun(buf.Get(x, y)));
