@@ -35,7 +35,7 @@ public class Processor {
             var instFirstByte = phl.Mem.Get(regs[PC_INDEX]);
 	    var instSecByte = phl.Mem.Get(regs[PC_INDEX] + 1);
 	    // Merge the 2 bytes into one 16-bit instruction.
-	    var inst = (0x0000 | (int) instFirstByte << 8) | instSecByte;
+	    var inst = (short) ((0x0000 | (short) instFirstByte << 8) | instSecByte);
 
 	    regs[PC_INDEX] += 2;
 
