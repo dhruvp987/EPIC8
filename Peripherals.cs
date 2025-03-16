@@ -12,7 +12,7 @@ public class Peripherals {
      *
      * Parameters:
      *   mem: The object to store RAM data
-     *   dis: The object to use for display output
+     *   disp: The object to use for display output
      *   stack: The stack to use for CHIP-8's subroutine calls
      *   gpu: The GPU to provide graphical capabilites
      */
