@@ -111,7 +111,7 @@ public class Processor {
      *   disp: The display to update with the new framebuffer
      */
     public void OpClearScreen(GPU gpu, IDisplay disp) {
-        gpu.RunKernel((x, y, isOn) => false);
+        gpu.RunKernel((x, y, isOn) => 0);
 	gpu.Display(disp);
     }
 
@@ -191,12 +191,7 @@ public class Processor {
 		// Grab the jth bit, starting from the leftmost one.
                 var bit = (byte) ((spriteRow << j) >> 7);
                 
-		if (bit == 1) {
-                    gpu.Set(x + j, y + i, true);
-		}
-		else {
-                    gpu.Set(x + j, y + i, false);
-		}
+                gpu.Set(x + j, y + i, bit);
 	    }
 	}
 

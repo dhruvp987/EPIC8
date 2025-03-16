@@ -19,14 +19,14 @@ public class GPU {
     }
 
     /*
-     * Set a pixel on (true) or off (false).
+     * Set a pixel on (1) or off (0).
      *
      * Parameters:
      *   x: The pixel's x index
      *   y: The pixel's y index
-     *   isOn: Whether the pixel is on or off
+     *   isOn: Whether the pixel is on (1) or off (0)
      */
-    public void Set(int x, int y, bool isOn) {
+    public void Set(int x, int y, int isOn) {
         buf.Set(x, y, isOn);
     }
 
@@ -35,10 +35,10 @@ public class GPU {
      *
      * Parameter:
      *   fun: The kernel to run on the frame buffer. It takes
-     *        three args: x-cor, y-cor, and the on/off state of that
-     *        pixel. It returns the new on/off state of the pixel
+     *        three args: x-cor, y-cor, and the on/off (1/0) state of that
+     *        pixel. It returns the new on/off (1/0) state of the pixel
      */
-    public void RunKernel(Func<int, int, bool, bool> fun) {
+    public void RunKernel(Func<int, int, int, int> fun) {
         for (int y = 0; y < buf.Height; y++) {
             for (int x = 0; x < buf.Width; x++) {
                 buf.Set(x, y, fun(x, y, buf.Get(x, y)));
