@@ -14,11 +14,15 @@ public class Processor {
 
     /*
      * Create a new processor.
+     *
+     * Parameter:
+     *   pcStart: The initial address to set to the program counter
      */
-    public Processor() {
+    public Processor(int pcStart) {
 	// Create the general registers plus the program counter
 	// and index register.
         regs = new int[NUM_GEN_REGS + NUM_SPEC_REGS];
+	regs[PC_INDEX] = pcStart;
 
 	delayTimer = new Timer();
 	soundTimer = new Timer();
