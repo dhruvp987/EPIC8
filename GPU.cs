@@ -26,8 +26,8 @@ public class GPU {
      *   y: The pixel's y index
      *   isOn: Whether the pixel is on (1) or off (0)
      */
-    public void Set(int x, int y, int isOn) {
-        buf.Set(x, y, isOn);
+    public void Set(int x, int y, Func<int, int> fun) {
+        buf.Set(x, y, fun(buf.Get(x, y)));
     }
 
     /*

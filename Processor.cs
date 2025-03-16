@@ -178,6 +178,11 @@ public class Processor {
 	var x = regs[xReg] % frameWidth;
 	var y = regs[yReg] % frameHeight;
 
+	// This keeps track of whether a pixel was turned off during
+	// the drawing operation. This is then used to set the VF
+	// flag register.
+	int turnedOff = 0;
+
 	for (var i = 0; i < spriteHeight; i++) {
 	    if (y + i >= frameHeight) break;
 
@@ -189,11 +194,19 @@ public class Processor {
                 if (x + j >= frameWidth) break;
 
 		// Grab the jth bit, starting from the leftmost one.
-                var bit = (byte) ((spriteRow << j) >> 7);
-                
-                gpu.Set(x + j, y + i, bit);
+                var bit = (byte) ((byte) (spriteRow << j) >> 7);
+               
+                gpu.Set(x + j, y + i, (isOn) => {
+                    if (bit == 1) {
+		        if ((isOn ^ bit) == 0) turnedOff = 1;
+                        return isOn ^ bit;
+		    }
+		    return isOn;
+		});
 	    }
 	}
+
+	regs[0xF] = turnedOff;
 
 	gpu.Display(disp);
     }
