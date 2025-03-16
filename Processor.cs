@@ -39,7 +39,7 @@ public class Processor {
             var instFirstByte = phl.Mem.Get(regs[PC_INDEX]);
 	    var instSecByte = phl.Mem.Get(regs[PC_INDEX] + 1);
 	    // Merge the 2 bytes into one 16-bit instruction.
-	    var inst = (short) ((0x0000 | (short) instFirstByte << 8) | instSecByte);
+	    var inst = (short) ((0x0000 | ((short) instFirstByte << 8)) | instSecByte);
 
 	    regs[PC_INDEX] += 2;
 
@@ -69,7 +69,7 @@ public class Processor {
 
             switch (instFirstNibbles[0]) {
                 case 0x1:
-		    addr = (short) ((0x000 | (short) instFirstNibbles[1] << 8) | instSecByte);
+		    addr = (short) ((0x0000 | ((short) instFirstNibbles[1] << 8)) | instSecByte);
 		    OpJump(addr);
 		    break;
 
@@ -82,7 +82,7 @@ public class Processor {
 		    break;
 
 		case 0xA:
-		    addr = (short) ((0x000 | (short) instFirstNibbles[1] << 8) | instSecByte);
+		    addr = (short) ((0x0000 | ((short) instFirstNibbles[1] << 8)) | instSecByte);
 		    OpSetIndex(addr);
 		    break;
 
@@ -203,10 +203,18 @@ public class Processor {
 	gpu.Display(disp);
     }
 
+    /*
+     * Split a byte into 2 nibbles.
+     *
+     * Parameter:
+     *   b: The byte to split
+     *
+     * Returns: An array of size 2 containing the nibbles.
+     */
     byte[] SplitIntoNibbles(byte b) {
         var nibbles = new byte[2];
         nibbles[0] = (byte) (b >> 4);
-	nibbles[1] = (byte) ((b << 4) >> 4);
+	nibbles[1] = (byte) (((byte) (b << 4)) >> 4);
         return nibbles;
     }
 }
